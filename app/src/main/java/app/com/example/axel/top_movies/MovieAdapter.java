@@ -58,6 +58,12 @@ final class MovieAdapter extends BaseAdapter {
     public String getItem(int position) {
         return movies.get(position).getImgURL();
     }
+    public String getTitle(int position) {
+        return movies.get(position).getTitle();
+    }
+    public String getPlot(int position) {
+        return movies.get(position).getPlotSynopsis();
+    }
 
     @Override
     public long getItemId(int position) {
@@ -74,5 +80,17 @@ final class MovieAdapter extends BaseAdapter {
     public void addMovie(String title, String plot, String posterPath, String rating, String releaseDate) {
 
         add(new Movie(title,posterPath,rating,plot,releaseDate));
+    }
+
+    public String getRelease_Date(int position) {
+        return  movies.get(position).getReleaseDate();
+    }
+
+    public String getRating(int position) {
+        return  movies.get(position).getUsrRating();
+    }
+
+    public String getImgUrl(int position) {
+        return  movies.get(position).getImgURL();
     }
 }

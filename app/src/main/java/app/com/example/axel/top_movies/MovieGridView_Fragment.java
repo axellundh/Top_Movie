@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -76,9 +79,27 @@ public class MovieGridView_Fragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
+        setHasOptionsMenu(true);
 
     }
+
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_detail_movie_view, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,6 +122,21 @@ public class MovieGridView_Fragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 String item = imageAdapter.getItem(position);
+                String title = imageAdapter.getTitle(position);
+                String plot = imageAdapter.getPlot(position);
+                String release = imageAdapter.getRelease_Date(position);
+                String rating = imageAdapter.getRating(position);
+                String imgurl = imageAdapter.getImgUrl(position);
+
+
+                Intent intent = new Intent(getActivity(), detail_movie_view.class);
+                intent.putExtra("TITLE", title);
+                intent.putExtra("PLOT", plot);
+                intent.putExtra("RELEASE", release);
+                intent.putExtra("RATING", rating);
+                intent.putExtra("IMGURL", imgurl);
+
+                startActivity(intent);
 
 
                 Toast.makeText(getActivity(), "" + item,

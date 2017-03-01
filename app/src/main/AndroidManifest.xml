@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.com.example.axel.top_movies">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -18,6 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".detail_movie_view"
+            android:label="@string/title_activity_detail_movie_view"></activity>
     </application>
 
 </manifest>
